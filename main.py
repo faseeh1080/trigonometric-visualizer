@@ -11,10 +11,13 @@ triangle = RightTriangle((100, 620), 500, math.radians(30))
 
 colors = {
     "bg": (0, 0, 0),
+    "primary": (180, 180, 180),
     "base": (255, 0, 0),
     "alt": (0, 255, 0),
     "hyp": (0, 0, 255)
 }
+
+segoeui_font = pygame.font.SysFont("segoeui", 12, False, False)
 
 while running:
     for event in pygame.event.get():
@@ -22,6 +25,15 @@ while running:
             running = False
 
     screen.fill(colors["bg"])
+
+    # HUD
+    hud_text_surfaces = [
+        segoeui_font.render("scene: 1", False, colors["primary"], None),
+        segoeui_font.render("hyp: None", False, colors["primary"], None),
+        segoeui_font.render("delta_time: None", False, colors["primary"], None)
+    ]
+
+    blit_surfaces_as_list(hud_text_surfaces, screen, (10, 10), 2)
 
     # Draw the triangle.
     pygame.draw.line(screen, colors["base"], triangle.points[0], triangle.points[1], width=1) # Base.
