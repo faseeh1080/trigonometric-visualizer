@@ -6,6 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
+delta_time = 0
 
 triangle = RightTriangle((100, 620), 500, math.radians(30))
 
@@ -29,8 +30,7 @@ while running:
     # HUD
     hud_text_surfaces = [
         segoeui_font.render("scene: 1", False, colors["primary"], None),
-        segoeui_font.render("hyp: None", False, colors["primary"], None),
-        segoeui_font.render("delta_time: None", False, colors["primary"], None)
+        segoeui_font.render(f"delta_time: {delta_time}ms", False, colors["primary"], None)
     ]
 
     blit_surfaces_as_list(hud_text_surfaces, screen, (10, 10), 2)
@@ -42,6 +42,6 @@ while running:
 
     pygame.display.flip()
 
-    clock.tick(60)
+    delta_time = clock.tick(60) # `clock.tick(60)` also limits the frame rate to 60 FPS.
 
 pygame.quit()
