@@ -1,4 +1,5 @@
 import math
+import pygame
 
 class RightTriangle:
     def __init__(self, position, hyp, angle):
@@ -22,3 +23,8 @@ class RightTriangle:
         """`value` in degrees. Can be positive or negative."""
         self.angle += math.radians(value) * delta_time / 1000
         self.refresh_points()
+
+    def draw(self, surface: pygame.Surface) -> None:
+        pygame.draw.line(surface, (255, 0, 0), self.points[0], self.points[1], width=1) # Base.
+        pygame.draw.line(surface, (0, 255, 0), self.points[1], self.points[2], width=1) # Alt.
+        pygame.draw.line(surface, (0, 0, 255), self.points[2], self.points[0], width=1) # Hyp.

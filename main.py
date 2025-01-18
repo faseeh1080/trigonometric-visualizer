@@ -13,9 +13,6 @@ triangle = RightTriangle((100, 620), 500, 30)
 colors = {
     "bg": (0, 0, 0),
     "primary": (180, 180, 180),
-    "base": (255, 0, 0),
-    "alt": (0, 255, 0),
-    "hyp": (0, 0, 255)
 }
 
 segoeui_font = pygame.font.SysFont("segoeui", 12, False, False)
@@ -43,10 +40,7 @@ while running:
 
     blit_surfaces_as_list(hud_text_surfaces, screen, (10, 10), 2)
 
-    # Draw the triangle.
-    pygame.draw.line(screen, colors["base"], triangle.points[0], triangle.points[1], width=1) # Base.
-    pygame.draw.line(screen, colors["alt"], triangle.points[1], triangle.points[2], width=1) # Alt.
-    pygame.draw.line(screen, colors["hyp"], triangle.points[2], triangle.points[0], width=1) # Hyp.
+    triangle.draw(screen)
 
     pygame.display.flip()
 
