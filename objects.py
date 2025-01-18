@@ -4,7 +4,7 @@ class RightTriangle:
     def __init__(self, position, hyp, angle):
         self.position = position
         self.hyp = hyp # The length of the hypotenuse.
-        self.angle = angle # In radians.
+        self.angle = math.radians(angle)
         self.points = [(0, 0), (0, 0), (0, 0)]
 
         self.refresh_points()
@@ -17,4 +17,8 @@ class RightTriangle:
 
         altitude = math.sin(self.angle) * self.hyp
         self.points[2] = (self.points[1][0], self.position[1] - altitude)
-        
+
+    def increment_angle(self, value: float, delta_time: float):
+        """`value` in degrees. Can be positive or negative."""
+        self.angle += math.radians(value) * delta_time / 1000
+        self.refresh_points()
