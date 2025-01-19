@@ -4,7 +4,8 @@ import pygame
 pygame.font.init()
 # pygame.init() initializes all pygame modules.
 # Use pygame.font.init() to initialize the `font` module only.
-segoeui_font = pygame.font.SysFont("segoeui", 12, False, False)
+segoeui_small = pygame.font.SysFont("segoeui", 12, False, False)
+segoeui_medium = pygame.font.SysFont("segoeui", 16, False, False)
 
 class RightTriangle:
     def __init__(self, position, hyp, angle):

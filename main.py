@@ -14,7 +14,7 @@ colors = {
     "primary": (180, 180, 180),
 }
 
-scenes_list = [Default, PythagoreanTheorem]
+scenes_list = [TrigonometricFunctions, PythagoreanTheorem]
 current_scene_no = 0
 current_scene = scenes_list[current_scene_no]() # Default.
 def go_to_next_or_prev_scene(direction: int) -> None:
@@ -51,9 +51,9 @@ while running:
 
     # HUD
     hud_text_surfaces = [
-        segoeui_font.render(f"scene: {current_scene.name}", False, colors["primary"], None),
-        segoeui_font.render(f"delta_time: {delta_time}ms", False, colors["primary"], None),
-        segoeui_font.render("Press H for help.", False, colors["primary"], None)
+        segoeui_small.render(f"scene: {current_scene.name}", False, colors["primary"], None),
+        segoeui_small.render(f"delta_time: {delta_time}ms", False, colors["primary"], None),
+        segoeui_small.render("Press H for help.", False, colors["primary"], None)
     ]
 
     blit_surfaces_as_list(hud_text_surfaces, screen, (10, 10), 2)

@@ -1,36 +1,51 @@
 import pygame
+import math
 from objects import *
+from ui import *
 
-class Default:
+class TrigonometricFunctions:
     def __init__(self):
-        self.name = "Triangle"
-        self.triangle = RightTriangle((100, 620), 500, 30)
+        self.name = "Trigonometric Functions"
+        self.triangle = RightTriangle((640, 360), 350, 30)
     
     def refresh(self, surface: pygame.Surface, delta_time: float, keys) -> None:
         """Handles input and draws the triangle to the `surface`.
         Get `keys` from pygame.key.get_pressed()"""
-        # Handle Input.
-        if keys[pygame.K_UP] and not keys[pygame.K_DOWN]:
-            self.triangle.increment_angle(15, delta_time)
-        elif keys[pygame.K_DOWN]:
-            self.triangle.increment_angle(-15, delta_time)
 
-        # Draw the triangle.
+        if keys[pygame.K_UP] and not keys[pygame.K_DOWN]:
+            self.triangle.increment_angle(25, delta_time)
+        elif keys[pygame.K_DOWN]:
+            self.triangle.increment_angle(-25, delta_time)
+
         self.triangle.draw(surface)
+
+        sin_value = math.sin(self.triangle.angle)
+        cos_value = math.cos(self.triangle.angle)
+        sin = segoeui_medium.render(f"sinΘ = {round(sin_value, 3)}", True, (255, 0, 0), None)
+        cos = segoeui_medium.render(f"cosΘ = {round(cos_value, 3)}", True, (0, 255, 0), None)
+        unity = segoeui_medium.render("1.0", True, (0, 0, 255), None)
+        blit_surface_in_the_middle_of_two_points(
+            sin, surface, self.triangle.points[0], self.triangle.points[1], (0, 10)
+        )
+        blit_surface_in_the_middle_of_two_points(
+            cos, surface, self.triangle.points[1], self.triangle.points[2], (0, 10)
+        )
+        blit_surface_in_the_middle_of_two_points(
+            unity, surface, self.triangle.points[2], self.triangle.points[0], (0, 10)
+        )
 
 class PythagoreanTheorem:
     def __init__(self) -> None:
         self.name = "Pythagorean Theorem"
-        self.triangle = RightTriangle((320, 360), 320, 30)
+        self.triangle = RightTriangle((480, 360), 240, 30)
     
     def refresh(self, surface: pygame.Surface, delta_time: float, keys) -> None:
         """Handles input and draws the triangle to the `surface`.
         Get `keys` from pygame.key.get_pressed()"""
-        # Handle Input.
+        
         if keys[pygame.K_UP] and not keys[pygame.K_DOWN]:
-            self.triangle.increment_angle(15, delta_time)
+            self.triangle.increment_angle(20, delta_time)
         elif keys[pygame.K_DOWN]:
-            self.triangle.increment_angle(-15, delta_time)
+            self.triangle.increment_angle(-20, delta_time)
 
-        # Draw the triangle.
         self.triangle.draw(surface)
