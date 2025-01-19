@@ -4,7 +4,7 @@ def blit_surfaces_as_list(
         sources: list[pygame.Surface],
         target: pygame.Surface,
         position: tuple[int, int],
-        padding = int
+        padding: int = 0
 ) -> None:
     """The Surface(s) in `sources` are drawn onto the `target` Surface from top to bottom"""
     x_position = position[0]
