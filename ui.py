@@ -14,11 +14,11 @@ def blit_surfaces_as_list(
         current_y_position += source.get_height() + padding
 
 def blit_surface_in_the_middle_of_two_points(
-    source: pygame.Surface,
-    target: pygame.Surface,
-    point1: tuple[int, int],
-    point2: tuple[int, int],
-    offset: tuple[int, int] = (0, 0)
+        source: pygame.Surface,
+        target: pygame.Surface,
+        point1: tuple[int, int],
+        point2: tuple[int, int],
+        offset: tuple[int, int] = (0, 0)
 ) -> None:
     
     center = (
