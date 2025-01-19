@@ -9,6 +9,9 @@ clock = pygame.time.Clock()
 running = True
 delta_time = 0
 
+ui = pygame.Surface((1280, 720), pygame.SRCALPHA)
+viewport = pygame.Surface((1280, 720), pygame.SRCALPHA)
+
 colors = {
     "bg": (0, 0, 0),
     "primary": (180, 180, 180),
@@ -46,6 +49,8 @@ while running:
                 go_to_next_or_prev_scene(-1)
 
     screen.fill(colors["bg"])
+    ui.fill((0, 0, 0, 0))
+    viewport.fill((0, 0, 0, 0))
 
     keys = pygame.key.get_pressed() # Used by the refresh method in scenes.
 
@@ -56,9 +61,12 @@ while running:
         segoeui_small.render("Press H for help.", False, colors["primary"], None)
     ]
 
-    blit_surfaces_as_list(hud_text_surfaces, screen, (10, 10), 2)
+    blit_surfaces_as_list(hud_text_surfaces, ui, (10, 10), 2)
 
-    current_scene.refresh(screen, delta_time, keys)
+    current_scene.refresh(viewport, delta_time, keys)
+
+    screen.blit(ui, (0, 0))
+    screen.blit(viewport, (0, 0))
 
     keys_prev_frame = keys
 
