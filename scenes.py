@@ -49,3 +49,24 @@ class PythagoreanTheorem:
             self.triangle.increment_angle(-20, delta_time)
 
         self.triangle.draw(surface)
+
+        base_square_points = draw_square_from_two_points(surface, self.triangle.points[0], self.triangle.points[1], (255, 0, 0), fill_color=(50, 0, 0))
+        alt_square_points = draw_square_from_two_points(surface, self.triangle.points[1], self.triangle.points[2], (0, 255, 0), fill_color=(0, 50, 0))
+        hyp_square_points = draw_square_from_two_points(surface, self.triangle.points[2], self.triangle.points[0], (0, 0, 255), fill_color=(0, 0, 50))
+
+        sin_value = math.sin(self.triangle.angle)
+        cos_value = math.cos(self.triangle.angle)
+
+        cos = segoeui_medium.render(f"cos^2 Θ = {round(cos_value ** 2, 3)}", True, (255, 0, 0), None)
+        sin = segoeui_medium.render(f"sin^2 Θ = {round(sin_value ** 2, 3)}", True, (0, 255, 0), None)
+        unity = segoeui_medium.render("1.0", True, (0, 0, 255), None)
+
+        blit_surface_in_the_middle_of_two_points(
+            cos, surface, base_square_points[0], base_square_points[2]
+        )
+        blit_surface_in_the_middle_of_two_points(
+            sin, surface, alt_square_points[0], alt_square_points[2]
+        )
+        blit_surface_in_the_middle_of_two_points(
+            unity, surface, hyp_square_points[0], hyp_square_points[2]
+        )
