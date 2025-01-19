@@ -14,8 +14,6 @@ colors = {
     "primary": (180, 180, 180),
 }
 
-segoeui_font = pygame.font.SysFont("segoeui", 12, False, False)
-
 scenes_list = [Default, PythagoreanTheorem]
 current_scene_no = 0
 current_scene = scenes_list[current_scene_no]() # Default.
