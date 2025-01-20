@@ -39,7 +39,7 @@ def draw_square_from_two_points(
         point1: tuple[int, int],
         border_color: tuple[int, int, int],
         border_width: int = 1,
-        fill_color: None | tuple[int, int, int] = None
+        fill_color: None | tuple[int, int, int, int] = None
 ) -> tuple:
     """Returns the points of the square"""
 
@@ -47,7 +47,9 @@ def draw_square_from_two_points(
     point3 = (point0[0] - (point1[1] - point0[1]), point0[1] + (point1[0] - point0[0]))
 
     if fill_color:
-        pygame.draw.polygon(surface, fill_color, [point0, point1, point2, point3])
+        temp_surface = pygame.Surface((1280, 720), pygame.SRCALPHA)
+        pygame.draw.polygon(temp_surface, fill_color, [point0, point1, point2, point3])
+        surface.blit(temp_surface, (0, 0))
     pygame.draw.lines(surface, border_color, True, [point0, point1, point2, point3], border_width)
 
     return point0, point1, point2, point3

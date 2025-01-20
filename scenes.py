@@ -50,9 +50,9 @@ class PythagoreanTheorem:
 
         self.triangle.draw(surface)
 
-        base_square_points = draw_square_from_two_points(surface, self.triangle.points[0], self.triangle.points[1], (255, 0, 0), fill_color=(50, 0, 0))
-        alt_square_points = draw_square_from_two_points(surface, self.triangle.points[1], self.triangle.points[2], (0, 255, 0), fill_color=(0, 50, 0))
-        hyp_square_points = draw_square_from_two_points(surface, self.triangle.points[2], self.triangle.points[0], (0, 0, 255), fill_color=(0, 0, 50))
+        base_square_points = draw_square_from_two_points(surface, self.triangle.points[0], self.triangle.points[1], (255, 0, 0), fill_color=(255, 0, 0, 50))
+        alt_square_points = draw_square_from_two_points(surface, self.triangle.points[1], self.triangle.points[2], (0, 255, 0), fill_color=(0, 255, 0, 50))
+        hyp_square_points = draw_square_from_two_points(surface, self.triangle.points[2], self.triangle.points[0], (0, 0, 255), fill_color=(0, 0, 255, 50))
 
         sin_value = math.sin(self.triangle.angle)
         cos_value = math.cos(self.triangle.angle)
