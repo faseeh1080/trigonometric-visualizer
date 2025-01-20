@@ -34,6 +34,10 @@ def go_to_next_or_prev_scene(direction: int) -> None:
     
     current_scene = scenes_list[current_scene_no]()
 
+show_help = False
+help_text = "Use the up and down arrows to adjust the angle. Use the left and right arrows to switch scenes."
+help_surface = segoeui_medium.render(help_text, True, (255, 255, 255), None)
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -44,6 +48,8 @@ while running:
                 go_to_next_or_prev_scene(1)
             if event.key == pygame.K_LEFT:
                 go_to_next_or_prev_scene(-1)
+            if event.key == pygame.K_h:
+                show_help = not show_help
 
     screen.fill(colors["bg"])
 
@@ -57,6 +63,8 @@ while running:
     ]
 
     blit_surfaces_as_list(hud_text_surfaces, screen, (10, 10), 2)
+    if show_help:
+        screen.blit(help_surface, (10, 688))
 
     current_scene.refresh(screen, delta_time, keys)
 
