@@ -1,5 +1,6 @@
 import pygame
 import math
+import my_math
 from objects import *
 from ui import *
 
@@ -21,18 +22,30 @@ class TrigonometricFunctions:
 
         sin_value = math.sin(self.triangle.angle)
         cos_value = math.cos(self.triangle.angle)
-        sin = segoeui_medium.render(f"sinΘ = {round(sin_value, 3)}", True, (255, 0, 0), None)
-        cos = segoeui_medium.render(f"cosΘ = {round(cos_value, 3)}", True, (0, 255, 0), None)
-        unity = segoeui_medium.render("1.0", True, (0, 0, 255), None)
+        sin_surface_1 = segoeui_medium.render(f"sinΘ = {round(sin_value, 3)}", True, (255, 0, 0), None)
+        cos_surface_1 = segoeui_medium.render(f"cosΘ = {round(cos_value, 3)}", True, (0, 255, 0), None)
+        unity_surface = segoeui_medium.render("1.0", True, (0, 0, 255), None)
         blit_surface_in_the_middle_of_two_points(
-            sin, surface, self.triangle.points[0], self.triangle.points[1], (0, 10)
+            sin_surface_1, surface, self.triangle.points[0], self.triangle.points[1], (0, 10)
         )
         blit_surface_in_the_middle_of_two_points(
-            cos, surface, self.triangle.points[1], self.triangle.points[2], (0, 10)
+            cos_surface_1, surface, self.triangle.points[1], self.triangle.points[2], (0, 10)
         )
         blit_surface_in_the_middle_of_two_points(
-            unity, surface, self.triangle.points[2], self.triangle.points[0], (0, 10)
+            unity_surface, surface, self.triangle.points[2], self.triangle.points[0], (0, 10)
         )
+
+        tan_value, csc_value, sec_value, cot_value = my_math.tan_csc_sec_cot_from_sin_cos(sin_value, cos_value)
+        text_color = (255, 255, 255)
+        sin_surface = segoeui_small.render(f"sinΘ = {sin_value}", True, text_color, None)
+        cos_surface = segoeui_small.render(f"cosΘ = {cos_value}", True, text_color, None)
+        tan_surface = segoeui_small.render(f"tanΘ = {tan_value}", True, text_color, None)
+        csc_surface = segoeui_small.render(f"cscΘ = {csc_value}", True, text_color, None)
+        sec_surface = segoeui_small.render(f"secΘ = {sec_value}", True, text_color, None)
+        cot_surface = segoeui_small.render(f"cotΘ = {cot_value}", True, text_color, None)
+        info_surfaces = (sin_surface, cos_surface, tan_surface, csc_surface, sec_surface, cot_surface)
+        blit_surfaces_as_list(info_surfaces, surface, (1270, 10), 2, align_right=True)
+        
 
 class PythagoreanTheorem:
     def __init__(self) -> None:
