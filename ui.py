@@ -50,6 +50,9 @@ def draw_square_from_two_points(
         temp_surface = pygame.Surface((1280, 720), pygame.SRCALPHA)
         pygame.draw.polygon(temp_surface, fill_color, [point0, point1, point2, point3])
         surface.blit(temp_surface, (0, 0))
+        # The draw method erases the pixels behind even if we give it a semitransparent color.
+        # To draw transparent squares, create a temporary surface object and draw the square 
+        # with an RGBA color. Then blit the temporary surface into the target surface.
     pygame.draw.lines(surface, border_color, True, [point0, point1, point2, point3], border_width)
 
     return point0, point1, point2, point3
